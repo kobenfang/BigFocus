@@ -18,7 +18,13 @@ import json
 import re
 from datetime import datetime, timedelta
 
-WORKSPACE = os.environ.get('DSH_WORKSPACE') or os.environ.get('OPENCLAW_WORKSPACE') or os.path.expanduser('~/.openclaw/workspace')
+def _ws_fallback():
+    if os.environ.get('OPENCLAW_GATEWAY_PORT') or os.environ.get('OPENCLAW_SERVICE_KIND'):
+        return os.path.expanduser('~/.openclaw/workspace')
+    if os.path.isdir(os.path.expanduser('~/.dsh')):
+        return os.path.expanduser('~/.dsh/workspace')
+    return os.path.expanduser('~/.openclaw/workspace')
+WORKSPACE = os.environ.get('DSH_WORKSPACE') or os.environ.get('OPENCLAW_WORKSPACE') or _ws_fallback()
 MEMORY_DIR = os.path.join(WORKSPACE, 'memory')
 TRACKER_FILE = os.path.join(MEMORY_DIR, 'bigfocus-tracker.md')
 RAW_DATA_FILE = os.path.join(MEMORY_DIR, 'bigfocus-raw-data.json')
