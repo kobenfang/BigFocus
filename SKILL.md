@@ -16,6 +16,10 @@ triggers:
   - 价格追踪
   - 降价通知
 ---
+> **🌍 环境兼容（OpenClaw / DSH 双端）**
+> - **OpenClaw**：脚本在技能目录下执行（`python3 scripts/bigfocus.py`），数据默认 `~/.openclaw/workspace/memory/`，定时推送走 `openclaw cron` + `openclaw message send`。
+> - **DSH**：无 `openclaw` CLI，数据走 `$DSH_WORKSPACE/memory`（默认 `~/.dsh/workspace/memory`）；定时任务改用 DSH 调度。
+
 
 # 🎯 BigFocus · 你的个人追踪管家
 

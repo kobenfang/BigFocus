@@ -18,8 +18,7 @@ import json
 import re
 from datetime import datetime, timedelta
 
-WORKSPACE = os.environ.get('OPENCLAW_WORKSPACE',
-                           os.path.expanduser('~/.openclaw/workspace'))
+WORKSPACE = os.environ.get('DSH_WORKSPACE') or os.environ.get('OPENCLAW_WORKSPACE') or os.path.expanduser('~/.openclaw/workspace')
 MEMORY_DIR = os.path.join(WORKSPACE, 'memory')
 TRACKER_FILE = os.path.join(MEMORY_DIR, 'bigfocus-tracker.md')
 RAW_DATA_FILE = os.path.join(MEMORY_DIR, 'bigfocus-raw-data.json')
